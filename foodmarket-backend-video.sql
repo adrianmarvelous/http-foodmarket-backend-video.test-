@@ -54,7 +54,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5,	'2019_12_14_000001_create_personal_access_tokens_table',	1),
 (6,	'2023_08_24_170050_create_sessions_table',	1),
 (7,	'2023_08_26_102030_create_food_table',	1),
-(8,	'2023_08_26_102619_create_transactions_table',	1);
+(8,	'2023_08_26_102619_create_transactions_table',	1),
+(9,	'2023_08_30_154159_rename_houser_number_tohouse_number',	2),
+(10,	'2023_08_30_154525_add_pho_number',	3);
 
 DROP TABLE IF EXISTS `password_reset_tokens`;
 CREATE TABLE `password_reset_tokens` (
@@ -100,12 +102,7 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('BGKEC9qHWrCsBGnLj1aq19qdmAoQkkXoRZANyhvd',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',	'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUmZOMUtWblIxRU0wZE5kcHp3Y0o5MGlCWE53c3RiOTFoVm9KMURQMiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQ2OiJodHRwOi8vZm9vZG1hcmtldC1iYWNrZW5kLXZpZGVvLnRlc3QvZGFzaGJvYXJkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9',	1693151824),
-('CHGDP3zlXUCQmQYbkKInhTCmjMJzEKAWtOwspjom',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',	'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiMlQ4TVJlc0JzYUo4a1oxeU1KTlQzTlB2ZVZyMVJuUnZzU2RlVFNsNyI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQyOiJodHRwOi8vZm9vZG1hcmtldC1iYWNrZW5kLXZpZGVvLnRlc3QvbG9naW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',	1693152540),
-('ddmtfgjQQIyQ7iSCYFgelkzTC9glTFCGcAKcKiKU',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',	'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZDU5ejVUb2VWR2ZIMFkzT2hsNkt1RzVxOTNHa0p3b3R6RXJrbjhGMiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly9mb29kbWFya2V0LWJhY2tlbmQtdmlkZW8udGVzdC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',	1693153177),
-('iN9aXkY7XjjdMRZGE7MQsydmBPhSqIkWJbjC7SZ1',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.62',	'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUnR2QkFGcVhhSXBPTWxybmEyUU9FbENySGNrU2JuZW1COXNTNE55SiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly9mb29kbWFya2V0LWJhY2tlbmQtdmlkZW8udGVzdC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==',	1693154469),
-('rlmpjo1bSt5cpQIiePU4MkR4d6D2V53ldwcKXpCp',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',	'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVzJNTHFscTFrYk5mNFB0MG1odXk1am1qUnRvR29ReHhmRzFmZ2hrZyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDY6Imh0dHA6Ly9mb29kbWFya2V0LWJhY2tlbmQtdmlkZW8udGVzdC9kYXNoYm9hcmQiO31zOjM6InVybCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9',	1693156092),
-('tKPQqgP3s6KeabhncYnFz4ACI4wVZ4jlwr91YozD',	NULL,	'127.0.0.1',	'PostmanRuntime/7.32.3',	'YToyOntzOjY6Il90b2tlbiI7czo0MDoiYXFXSTk5REQ1b1NSdlNka3VqQVlVczFSbkNnMVp3U2dwbnVkUlp3aSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',	1693153848);
+('pZizQFV9m3yEi7664MRphZ1NjvdwShWVpUnxlEwY',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',	'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRHNIbXRXd1FnRVk1TUgycXIxMndWRU1yTmd4MktYU2lmTG9lSXdLOSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTI6Imh0dHA6Ly9mb29kbWFya2V0LWJhY2tlbmQtdmlkZW8udGVzdC9kYXNoYm9hcmQvdXNlcnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjM6InVybCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9',	1693410466);
 
 DROP TABLE IF EXISTS `transactions`;
 CREATE TABLE `transactions` (
@@ -137,7 +134,8 @@ CREATE TABLE `users` (
   `current_team_id` bigint unsigned DEFAULT NULL,
   `profile_photo_path` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` text COLLATE utf8mb4_unicode_ci,
-  `houserNumber` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `houseNumber` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phoneNumber` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `roles` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'USER',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -146,7 +144,8 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `address`, `houserNumber`, `city`, `roles`, `created_at`, `updated_at`) VALUES
-(1,	'Adrian Marvel',	'adrianmarvelugr@gmail.com',	NULL,	'$2y$10$JZY/8rmm3q.zyoqFQIkw2.r4iRjCnxHORJZLjFpT3C5lM8mc.oX1S',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'ADMIN',	'2023-08-27 02:03:57',	'2023-08-27 02:03:57');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `address`, `houseNumber`, `phoneNumber`, `city`, `roles`, `created_at`, `updated_at`) VALUES
+(1,	'Adrian Marvel',	'adrianmarvelugr@gmail.com',	NULL,	'$2y$10$JZY/8rmm3q.zyoqFQIkw2.r4iRjCnxHORJZLjFpT3C5lM8mc.oX1S',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'',	NULL,	'ADMIN',	'2023-08-27 02:03:57',	'2023-08-27 02:03:57'),
+(2,	'Adrian Marvel',	'aadrianmarvelugr@gmail.com',	NULL,	'greenpurple',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'Ngagel',	'13',	'081',	'Surabaya',	'USER',	'2023-08-30 08:47:45',	'2023-08-30 08:47:45');
 
--- 2023-08-27 17:23:18
+-- 2023-08-31 01:45:32

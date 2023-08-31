@@ -23,7 +23,8 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
 
             $table->text('address')->nullable();
-            $table->string('houserNumber')->nullable();
+            $table->string('houseNumber')->nullable();
+            $table->string('phoneNumber')->nullable();
             $table->string('city')->nullable();
 
             $table->string('roles')->default('USER');
@@ -31,6 +32,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
