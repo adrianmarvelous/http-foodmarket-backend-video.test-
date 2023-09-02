@@ -29,7 +29,7 @@ CREATE TABLE `food` (
   `ingredients` text COLLATE utf8mb4_unicode_ci,
   `price` int DEFAULT NULL,
   `rate` double DEFAULT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `types` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `picturePath` text COLLATE utf8mb4_unicode_ci,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -37,6 +37,9 @@ CREATE TABLE `food` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `food` (`id`, `name`, `description`, `ingredients`, `price`, `rate`, `types`, `picturePath`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1,	'food testing',	'description',	'bumb u',	100,	NULL,	NULL,	NULL,	'2023-09-02 02:06:46',	'2023-09-02 01:32:42',	'2023-09-02 02:06:46'),
+(2,	'food testing 2',	'description',	'bumb u',	100,	NULL,	'new',	NULL,	NULL,	'2023-09-02 01:37:59',	'2023-09-02 02:05:32');
 
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
@@ -56,7 +59,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7,	'2023_08_26_102030_create_food_table',	1),
 (8,	'2023_08_26_102619_create_transactions_table',	1),
 (9,	'2023_08_30_154159_rename_houser_number_tohouse_number',	2),
-(10,	'2023_08_30_154525_add_pho_number',	3);
+(10,	'2023_08_30_154525_add_pho_number',	3),
+(11,	'2023_09_02_083515_change_name_type_to_types',	4);
 
 DROP TABLE IF EXISTS `password_reset_tokens`;
 CREATE TABLE `password_reset_tokens` (
@@ -102,7 +106,7 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('pZizQFV9m3yEi7664MRphZ1NjvdwShWVpUnxlEwY',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',	'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRHNIbXRXd1FnRVk1TUgycXIxMndWRU1yTmd4MktYU2lmTG9lSXdLOSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTI6Imh0dHA6Ly9mb29kbWFya2V0LWJhY2tlbmQtdmlkZW8udGVzdC9kYXNoYm9hcmQvdXNlcnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjM6InVybCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9',	1693410466);
+('EUJWpnG1AzrEA00HMWkEtGtSUf9ae1oyamF4m6ha',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',	'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiN0pXNUpyNldNR01Pc0tsMm5mOEVhbzk4aFh4bU5Yejl3ZmhLTXJmWiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjYxOiJodHRwOi8vZm9vZG1hcmtldC1iYWNrZW5kLXZpZGVvLnRlc3QvZGFzaGJvYXJkL3RyYW5zYWN0aW9ucy8xIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9',	1693651761);
 
 DROP TABLE IF EXISTS `transactions`;
 CREATE TABLE `transactions` (
@@ -119,6 +123,8 @@ CREATE TABLE `transactions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `transactions` (`id`, `user_id`, `food_id`, `quantity`, `total`, `status`, `paymet_url`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1,	1,	2,	1,	1,	'ON_DELIVERY',	'tessssssss',	NULL,	'2023-09-02 10:48:49',	NULL);
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -145,7 +151,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `address`, `houseNumber`, `phoneNumber`, `city`, `roles`, `created_at`, `updated_at`) VALUES
-(1,	'Adrian Marvel',	'adrianmarvelugr@gmail.com',	NULL,	'$2y$10$JZY/8rmm3q.zyoqFQIkw2.r4iRjCnxHORJZLjFpT3C5lM8mc.oX1S',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'',	NULL,	'ADMIN',	'2023-08-27 02:03:57',	'2023-08-27 02:03:57'),
-(2,	'Adrian Marvel',	'aadrianmarvelugr@gmail.com',	NULL,	'greenpurple',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'Ngagel',	'13',	'081',	'Surabaya',	'USER',	'2023-08-30 08:47:45',	'2023-08-30 08:47:45');
+(1,	'Adrian Marvel',	'adrianmarvelugr@gmail.com',	NULL,	'$2y$10$JZY/8rmm3q.zyoqFQIkw2.r4iRjCnxHORJZLjFpT3C5lM8mc.oX1S',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'',	NULL,	'ADMIN',	'2023-08-27 02:03:57',	'2023-08-27 02:03:57');
 
--- 2023-08-31 01:45:32
+-- 2023-09-02 11:07:48
